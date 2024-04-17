@@ -23,6 +23,7 @@ import { create } from 'zustand';
 // - 타입 지정 (인터페이스를 사용해서 지정 해야 함)
 // setZNormal = 함수
 // zNormal변수= 기능
+// *store를 사용하면 바로 전달 할 수 있음 (불필요한 동작 최소화)
 interface Store {
     zNormal: number;
     setZNormal: (zNormal: number) => void; // 반환이 없이 호출만 하고 있음
@@ -69,6 +70,7 @@ export default function ZustandLibrary() {
 
     return (
         <div>
+            <a href="http//localhost:3000"> 홈으로 </a>
             <div>
                 <h4>useState 방식 : {normal}</h4>
                 <button onClick={decreaseNormal}>-</button>
@@ -79,6 +81,38 @@ export default function ZustandLibrary() {
                 <button onClick={drcreaseZnormal}>-</button>
                 <button onClick={increaseZnormal}>+</button>
             </div>
+            <SubComponent1 normal={normal} increseNormal={increaseNormal} dcreaseNormal={decreaseNormal}></SubComponent1>
+            <SubComponent2></SubComponent2>
         </div>
     );
+}
+
+interface Sub1Props {
+    normal: number;
+    increseNormal: () => void;
+    dcreaseNormal: () => void;
+}
+
+function SubComponent1({ normal, increseNormal, dcreaseNormal }: Sub1Props) {
+
+    return (
+        <div>
+            <h5>Normal :{normal} </h5>
+            <button onClick={dcreaseNormal}>-</button>
+            <button onClick={increseNormal}>+</button>
+        </div>
+    )
+}
+
+function SubComponent2() {
+
+    const { zNormal, increaseZnormal, drcreaseZnormal } = useStore();
+
+    return (
+        <div>
+            <h5>Zustand : {zNormal} </h5>
+            <button onClick={increaseZnormal}>-</button>
+            <button onClick={drcreaseZnormal}>+</button>
+        </div>
+    )
 }
