@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { create } from 'zustand';
 
 // zustand 패키지 (라이브러리) :
@@ -41,7 +42,7 @@ const useStore = create<Store>((set) =>
     // set 함수는 매개변수로 현재 상태를 인자로 받는 콜백 함수를 전달해야함
     // set 함수의 매개변수로 전달된 콜백 함수는 상태객체 (stor)를 반환해야 함
     setZNormal: (zNormal) => set(state => ({ ...state, zNormal })),
-    // 상태를 매개변수를 받는 콜백함수를 가져와서 객체를 반환하기 위해 원래 state 상태를 유지시키고 zNormal을 바꾸기 위해 현재 상태(state).zNormal +1 을 한다.
+    // 상태를 매개변수로 받는 콜백함수를 가져와서 객체를 반환하기 위해 원래 state 상태를 유지시키고 zNormal을 바꾸기 위해 현재 상태(state).zNormal +1 을 한다.
     increaseZnormal: () => set(state => ({ ...state, zNormal: state.zNormal + 1 })),
     drcreaseZnormal: () => set(state => ({ ...state, zNormal: state.zNormal - 1 }))
 
@@ -71,7 +72,8 @@ export default function ZustandLibrary() {
 
     return (
         <div>
-            <a href="http://localhost:3000/router"> 홈으로 </a>
+            {/* <a href="http://localhost:3000/router"> 홈으로 </a> */}
+            <Link to='/router'>홈으로</Link>
             <div>
                 <h4>useState 방식 : {normal}</h4>
                 <button onClick={decreaseNormal}>-</button>
