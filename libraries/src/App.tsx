@@ -14,7 +14,7 @@ function App() {
       <Route path='/zustand' element={<ZustandLibrary />} /> */}
       <Route path='/router' element={<Layout />}>
         <Route index element={<ReactRouterLibrary />} />
-        <Route path='page1' element={<ReactRouterPage1 />} />
+        <Route path='page1:value' element={<ReactRouterPage1 />} />
         <Route path='page2' element={<ReactRouterPage2 />} />
       </Route>
       <Route path='/zustand' element={<ZustandLibrary />} />
